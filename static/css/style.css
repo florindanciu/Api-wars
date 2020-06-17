@@ -8,10 +8,19 @@ h1 {
 }
 
 .container {
-    width: 75%;
+    width: 100%;
     margin: 0 auto;
 }
 
-.table.table-bordered {
+.tableHead {
+    font-weight: bolder;
     text-align: center;
+}
+.tableBody {
+    font-size: small;
+}
+
+#tableButtons {
+    !important;
+    width: 100%;
 }
