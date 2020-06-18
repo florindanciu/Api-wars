@@ -1,14 +1,10 @@
-<html>
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="../static/css/style.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-    <title>API Wars</title>
-</head>
-<body>
+{% extends 'layout.html' %}
+
+{% block head %}
+{% endblock %}
+
+{% block body %}
+
     <div class="container">
         <div>
             <h1>Star Wars universe planets</h1>
@@ -20,22 +16,48 @@
         <div>
             <table class="table table-bordered" id="table">
                 <thead class="tableHead">
-                    <tr>
-                        <td>Name</td>
-                        <td>Diameter</td>
-                        <td>Climate</td>
-                        <td>Terrain</td>
-                        <td>Surface Water Percentage</td>
-                        <td>Population</td>
-                        <td>Residents</td>
-                        <td></td>
-                    </tr>
+                <tr>
+                    <td>Name</td>
+                    <td>Diameter</td>
+                    <td>Climate</td>
+                    <td>Terrain</td>
+                    <td>Surface Water Percentage</td>
+                    <td>Population</td>
+                    <td>Residents</td>
+                    <td></td>
+                </tr>
                 </thead>
-                <tbody class="tableBody">
+                <tbody class="textSize">
                 </tbody>
             </table>
         </div>
     </div>
-    <script src="../static/js/app.js"></script>
-</body>
-</html>
+
+    <div class="modal-overlay">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h5 class="modal-title">Residents</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+                <table class="table table-small textSize">
+                    <thead class="thead-dark">
+                    <tr>
+                        <th>Name</th>
+                        <th>Height</th>
+                        <th>Mass</th>
+                        <th>Hair color</th>
+                        <th>Skin color</th>
+                        <th>Eye color</th>
+                        <th>Birth year</th>
+                        <th>Gender</th>
+                    </tr>
+                    </thead>
+                    <tbody class="tableBodyResidents"></tbody>
+                </table>
+            <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
+        </div>
+    </div>
+
+{% endblock %}

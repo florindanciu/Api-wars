@@ -1,0 +1,22 @@
+{% extends 'layout.html' %}
+{% block head %}
+{% endblock %}
+
+{% block body %}
+    <div class="wrapper fadeInDown">
+        <div id="formContent">
+            <div class="fadeIn first">
+                <i class="fa fa-user-circle fa-5x"></i>
+            </div>
+            <form action="/register" method="post">
+                <input type="text" id="full_name" class="fadeIn second" name="full_name" placeholder="Full Name" required>
+                <input type="text" id="email" class="fadeIn second" name="email" placeholder="Email" required>
+                <input type="text" id="password" class="fadeIn third" name="password" placeholder="Password"required>
+                <input type="text" id="confirm" class="fadeIn third" name="confirm" placeholder="Confirm password"required><br><br>
+                <input type="submit" class="fadeIn fourth" value="Register">
+            </form>
+            <div id="formFooter">
+            </div>
+        </div>
+    </div>
+{% endblock %}
