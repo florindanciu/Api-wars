@@ -1,10 +1,10 @@
 from typing import List, Dict
 from psycopg2 import sql
 from psycopg2.extras import RealDictCursor
-import database_connection
+import database_common
 
 
-@database_connection.connection_handler
+@database_common.connection_handler
 def add_data(cursor: RealDictCursor, full_name, email, password):
     query = """
         INSERT INTO users (full_name, email, password)
@@ -12,17 +12,18 @@ def add_data(cursor: RealDictCursor, full_name, email, password):
         """
     cursor.execute(query, (full_name, email, password,))
 
-# @database_connection.connection_handler
-# def get_data_by_email(cursor: RealDictCursor, email) -> list:
-#     query = """
-#             SELECT *
-#             FROM users
-#             WHERE user_email = %s"""
-#     cursor.execute(query, (email,))
-#     return cursor.fetchone()
+
+@database_common.connection_handler
+def get_data_by_email(cursor: RealDictCursor, email) -> list:
+    query = """
+            SELECT *
+            FROM users
+            WHERE email = %s"""
+    cursor.execute(query, (email,))
+    return cursor.fetchone()
 #
 #
-# @database_connection.connection_handler
+# @database_common.connection_handler
 # def get_email_by_email(cursor: RealDictCursor, email) -> list:
 #     query = """
 #             SELECT user_email
@@ -32,7 +33,7 @@ def add_data(cursor: RealDictCursor, full_name, email, password):
 #     return cursor.fetchone()
 #
 #
-# @database_connection.connection_handler
+# @database_common.connection_handler
 # def get_password_by_email(cursor: RealDictCursor, email) -> list:
 #     query = """
 #             SELECT password

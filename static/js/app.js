@@ -15,9 +15,9 @@ window.onload = function () {
         tBody.innerHTML = '';
         planets.forEach((planet) => {
             if (planet.residents.length > 0) {
-                residents = `<button class="btn btn-secondary btn-sm resident-btn">${planet.residents.length}</button>`
+                residents = `<button class="btn btn-secondary btn-sm resident-btn">${planet.residents.length} resident(s)</button>`
             } else {
-                residents = 'No residents'
+                residents = 'No known residents'
             }
             let cell = `
                 <tr>
@@ -31,10 +31,17 @@ window.onload = function () {
                         ${residents}
                         <input type="hidden" value="${planet.residents}"
                     </td>
-                    <td><button class="badge badge-info" id="vote-btn">Vote</button></td>
+                    <td><button class="btn btn-secondary btn-sm vote-btn">Vote</button></td>
                 </tr>
             `;
             tBody.innerHTML += cell
+
+            // Vote
+            document.querySelector('.vote-btn').forEach((button) => {
+                button.onclick = function () {
+                    return null
+                }
+            })
 
             // Modal
             let modal = document.querySelector('.modal-overlay');
