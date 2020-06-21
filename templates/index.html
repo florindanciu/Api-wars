@@ -5,6 +5,10 @@
 
 {% block body %}
 
+    {# Votes submission message #}
+    <div id="snackbar"></div>
+
+    {# Planets list #}
     <div class="container">
         <div>
             <h1>Star Wars universe planets</h1>
@@ -14,8 +18,8 @@
             <button type="button" class="btn btn-secondary" id="next">Next</button>
         </div>
         <div>
-            <table class="table table-bordered" id="table">
-                <thead class="tableHead">
+            <table class="table" id="table">
+                <thead class="table-active tableHead">
                 <tr>
                     <td>Name</td>
                     <td>Diameter</td>
@@ -33,30 +37,57 @@
         </div>
     </div>
 
+    {# Residents modal#}
     <div class="modal-overlay">
         <div class="modal-container">
             <div class="modal-header">
-                <h5 class="modal-title">Residents</h5>
+                <h5 class="modal-title residents-title"></h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-                <table class="table table-small textSize">
-                    <thead class="thead-dark">
-                    <tr>
-                        <th>Name</th>
-                        <th>Height</th>
-                        <th>Mass</th>
-                        <th>Hair color</th>
-                        <th>Skin color</th>
-                        <th>Eye color</th>
-                        <th>Birth year</th>
-                        <th>Gender</th>
-                    </tr>
-                    </thead>
-                    <tbody class="tableBodyResidents"></tbody>
-                </table>
-            <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
+            <table class="table table-small textSize">
+                <thead class="table-active">
+                <tr>
+                    <th>Name</th>
+                    <th>Height</th>
+                    <th>Mass</th>
+                    <th>Hair color</th>
+                    <th>Skin color</th>
+                    <th>Eye color</th>
+                    <th>Birth year</th>
+                    <th>Gender</th>
+                </tr>
+                </thead>
+                <tbody class="tableBodyResidents"></tbody>
+            </table>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+
+    {# Votes modal #}
+    <div class="modal-overlay votes">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h6 class="modal-title">{{ user_info['full_name'] }} 's votes</h6>
+                <button type="button" class="close" data-dismiss="modal-votes" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <table class="table table-small textSize">
+                <thead class="table-active">
+                <tr>
+                    <th>Planet name</th>
+                    <th>Received votes</th>
+                </tr>
+                </thead>
+                <tbody class="tableBodyVotes"></tbody>
+            </table>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal-votes">Close</button>
+            </div>
         </div>
     </div>
 

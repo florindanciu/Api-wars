@@ -1,4 +1,6 @@
-from flask import Flask, render_template, request, session, redirect, url_for, flash
+from flask import Flask, render_template, request, session, redirect, url_for, flash, jsonify
+from datetime import datetime
+import json
 import hashing
 import db
 
@@ -18,8 +20,9 @@ def home_page():
 def index():
     if 'email' in session:
         user_info = db.get_data_by_email(session['email'])
-        return render_template('index.html', user_info=user_info, logged=True)
-    return render_template('home_page.html', logged=False)
+        planets_info = db.get_votes_by_user_id(user_info['user_id'])
+        return render_template('index.html', user_info=user_info, planets_info=planets_info)
+    return render_template('home_page.html')
 
 
 @app.route('/register', methods=['GET', 'POST'])
@@ -58,7 +61,7 @@ def login():
         elif hashing.verify_password(password, user_info['password']):
             session['email'] = email
             flash('You are now logged in', 'success')
-            return render_template('home_page.html', user_info=user_info)
+            return render_template('index.html', user_info=user_info)
         else:
             flash('Incorrect password!', 'danger')
             return redirect(url_for('login'))
@@ -70,6 +73,32 @@ def logout():
     session.clear()
     flash('You are now logged out', 'info')
     return redirect(url_for('index'))
+
+
+@app.route('/votes', methods=['POST'])
+def votes():
+    submission_time = datetime.now()
+    planet_name = json.loads(request.data.decode("utf-8"))["planet"]
+    planet_id = json.loads(request.data.decode("utf-8"))["id"]
+    email = session['email']
+    user_id = db.get_data_by_email(email)['user_id']
+    planet_name_db = db.get_votes_by_planet_name_and_user_id(planet_name, user_id)
+
+    if planet_name_db:
+        db.update_vote(planet_name, user_id)
+    else:
+        db.add_vote(planet_name, user_id, submission_time, 1, planet_id)
+
+    # Why need a return?, Is there other option without using fake return?
+    return 'OK'
+
+
+# Sending data to JS
+@app.route("/api/votes_data")
+def votes_data():
+    user_info = db.get_data_by_email(session['email'])
+    votes_info = db.get_votes_by_user_id(user_info['user_id'])
+    return jsonify(votes_info)
 
 
 if __name__ == '__main__':

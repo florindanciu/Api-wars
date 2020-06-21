@@ -21,23 +21,42 @@ def get_data_by_email(cursor: RealDictCursor, email) -> list:
             WHERE email = %s"""
     cursor.execute(query, (email,))
     return cursor.fetchone()
-#
-#
-# @database_common.connection_handler
-# def get_email_by_email(cursor: RealDictCursor, email) -> list:
-#     query = """
-#             SELECT user_email
-#             FROM users
-#             WHERE user_email = %s"""
-#     cursor.execute(query, (email,))
-#     return cursor.fetchone()
-#
-#
-# @database_common.connection_handler
-# def get_password_by_email(cursor: RealDictCursor, email) -> list:
-#     query = """
-#             SELECT password
-#             FROM users
-#             WHERE user_email = %s"""
-#     cursor.execute(query, (email,))
-#     return cursor.fetchall()
+
+
+@database_common.connection_handler
+def get_votes_by_planet_name_and_user_id(cursor: RealDictCursor, planet_name, user_id) -> list:
+    query = """
+            SELECT planet_name
+            FROM planet_votes
+            WHERE planet_name = %s and user_id = %s"""
+    cursor.execute(query, (planet_name, user_id,))
+    return cursor.fetchone()
+
+
+@database_common.connection_handler
+def get_votes_by_user_id(cursor: RealDictCursor, user_id) -> list:
+    query = """
+            SELECT planet_name, vote_numbers
+            FROM planet_votes
+            WHERE user_id = %s"""
+    cursor.execute(query, (user_id,))
+    return cursor.fetchall()
+
+
+@database_common.connection_handler
+def update_vote(cursor: RealDictCursor, planet_name, user_id):
+    query = """
+        UPDATE planet_votes
+        SET vote_numbers = vote_numbers + 1
+        WHERE planet_name = %s and user_id = %s;
+        """
+    cursor.execute(query, (planet_name, user_id))
+
+
+@database_common.connection_handler
+def add_vote(cursor: RealDictCursor, planet_name, user_id, submission_time, vote_numbers, planet_id):
+    query = """
+        INSERT INTO planet_votes (planet_name, user_id, submission_time, vote_numbers, planet_id)
+        VALUES (%s, %s, %s, %s, %s);
+        """
+    cursor.execute(query, (planet_name, user_id, submission_time, vote_numbers, planet_id,))
