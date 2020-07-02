@@ -12,8 +12,8 @@ app.secret_key = b'Gx8Q_64t8_XxE9yPZpD6Ww'
 def home_page():
     if 'email' in session:
         user_info = db.get_data_by_email(session['email'])
-        return render_template('home_page.html', user_info=user_info)
-    return render_template('home_page.html')
+        return render_template('home_page.html', user_info=user_info, logged=True)
+    return render_template('home_page.html', logged=False)
 
 
 @app.route('/index')

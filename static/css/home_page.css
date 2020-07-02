@@ -16,7 +16,7 @@ body {
     position: absolute;
     top: 30%;
     left: 30%;
-    z-index: 1;
+    /*z-index: 1;*/
     animation: intro 6s ease-out 3s;
     color: rgb(75, 213, 238);
     font-weight: 400;

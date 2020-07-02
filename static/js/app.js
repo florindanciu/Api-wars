@@ -39,6 +39,7 @@ window.onload = function () {
             `;
             tBody.innerHTML += cell
 
+
             // Residents modal
             // Open modal
             let modal = document.querySelector('.modal-overlay');
@@ -81,6 +82,7 @@ window.onload = function () {
 
             // Votes modal
             // Votes (need clarifications of handle errors)
+            // Send data to Python
             let votes = document.querySelectorAll('.vote-btn')
             for (let i = 0; i < votes.length; i++) {
                 votes[i].onclick = function (e) {
@@ -179,7 +181,7 @@ window.onload = function () {
         if (message) {
             setTimeout(function () {
             message.remove();
-            }, 3000)
+            }, 2000)
         }
     }
 
