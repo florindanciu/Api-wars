@@ -184,5 +184,5 @@ function flashFlaskTimeout () {
 }
 
 flashFlaskTimeout();
-getData('http://swapi.dev/api/planets', displayData);
+getData('https://swapi.dev/api/planets', displayData);
 
