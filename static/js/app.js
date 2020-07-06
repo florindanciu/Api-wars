@@ -51,7 +51,7 @@ window.onload = function () {
                     let tBodyResidents = document.querySelector('.tableBodyResidents');
                     tBodyResidents.innerHTML = '';
                     residents.forEach((resident) => {
-                        fetch(resident)
+                        fetch(resident.replace('http:', 'https:'))
                             .then((response) => response.json())
                             .then((data) => {
                                 let cell = `
