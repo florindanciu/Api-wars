@@ -21,6 +21,8 @@
           integrity=“sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU” crossorigin=“anonymous”>
 
     <link rel="shortcut icon" href="{{ url_for('static', filename='favicon/favicon.ico') }}">
+    <script src="../static/js/app.js" defer></script>
+    <script src="../static/js/home_page.js" defer></script>
 
     <title>API Wars</title>
     {% include 'includes/message.html' %}
@@ -68,8 +70,6 @@
 </nav>
 {% block body %}
 {% endblock %}
-<script src="../static/js/app.js"></script>
-<script src="../static/js/home_page.js"></script>
 
 </body>
 </html>
