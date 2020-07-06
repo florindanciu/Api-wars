@@ -150,7 +150,7 @@ window.onload = function () {
 
     // AJAX sending data to python on POST method
     async function postData(url = '', data = {}) {
-        const response = await fetch(url, {
+        const response = await fetch(url.replace('http:', 'https:'), {
             method: 'POST',
             mode: 'cors',
             cache: 'no-cache',
