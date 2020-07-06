@@ -1,7 +1,7 @@
 window.onload = function () {
 
     function getData(url, callback) {
-        fetch(url)
+        fetch(url.replace('http:', 'https:'))
             .then((response) => response.json())
             .then((data) => {
                 callback(data);
