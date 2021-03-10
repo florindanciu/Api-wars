@@ -146,7 +146,7 @@ function displayData(data) {
     }
 }
 
-// AJAX sending data to python on POST method
+// AJAX sending data to server on POST method
 async function postData(url = '', data = {}) {
     const response = await fetch(url.replace('http:', 'https:'), {
         method: 'POST',

@@ -88,8 +88,6 @@ def votes():
         db.update_vote(planet_name, user_id)
     else:
         db.add_vote(planet_name, user_id, submission_time, 1, planet_id)
-
-    # Why need a return?, Is there other option without using fake return?
     return 'OK'
 
 
